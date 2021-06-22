@@ -20,7 +20,7 @@ const Login = (props) => {
         axiosWithAuth().post('/api/login' , props.credentials)
         .then(res => {
             window.localStorage.setItem('token' , res.data.payload);
-            history.push('/protected');
+            history.push('/friends');
         })
         .catch(err => console.log(err));
     }

@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
 import FriendsList from './components/FriendsList';
-
+import FriendComponent from './components/FriendComponent';
+import FriendForm from './components/FriendForm';
 
 function App() {
   const [credentials , setCredentials] = useState({
@@ -21,10 +22,12 @@ function App() {
     <Router>
     <div className="App">
     <Switch>
-         <PrivateRoute exact path='/protected' component={FriendsList}/>
+         <PrivateRoute exact path='/friends' component={FriendsList}/>
           <Route exact path="/">
             <Login credentials={credentials} setCredentials={setCredentials}/>
           </Route>
+          <PrivateRoute exact path='/friend/:id' component={FriendComponent}/>
+          <PrivateRoute exact path='/addFriend/' component={FriendForm}/>
     </Switch>
     </div>
     </Router>

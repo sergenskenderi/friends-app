@@ -44,3 +44,20 @@
   background-color: rgb(233, 231, 231);
   padding: 50px;
 }
+
+.addFriendForm{
+  width: 30%;
+  margin: auto;
+  margin-top: 200px;
+  background-color: rgb(233, 231, 231);
+  padding: 50px;
+}
+
+.titleFriendForm{
+  margin-bottom: 3%;
+  margin-right: 10%;
+}
+
+.backButton{
+  float: left;
+}
