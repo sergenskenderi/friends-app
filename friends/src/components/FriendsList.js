@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import {Card , Button , Container , Row} from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { FaTrashAlt } from "react-icons/fa";
 
 const FriendsList = () => {
     const [friends , setFriends] = useState([]);
@@ -13,10 +14,21 @@ const FriendsList = () => {
        .then( res => {
            setFriends(res.data);
        })
+       .catch(err => console.log(err))
     }, [])
 
     const showMore = (e) => {
         history.push(`/friend/${e.target.value}`);
+    }
+
+    const removeFriend = (e) => {
+        console.log(e.target.value);
+        axiosWithAuth()
+        .delete(`/api/friends/${e.target.value}`)
+        .then(res => {
+            setFriends(res.data);
+        })
+        .catch(err => console.log(err))
     }
 
     return (
@@ -38,6 +50,7 @@ const FriendsList = () => {
                          Age : <strong>{friend.age}</strong>
                         </Card.Text>
                         <Button variant="primary" value={friend.id} onClick={showMore}>Show More</Button>
+                        <Button variant="danger" value={friend.id} onClick={removeFriend} ><FaTrashAlt /></Button>
                     </Card.Body>
                     </Card>
                 )
